@@ -14,7 +14,12 @@ public class Main {
 		N=0;//원소(노드)의 갯수
 	}
 	public void insert(int x) {
-
+		if(x==0) {result[++num]=delete(); zero++;}//0을 만나면 삭제
+		else {
+			N++;//원소(노드) 갯수 선증가
+			heap[N]=x;//삽입(우선순위 큐 이므로 마지막에 삽입)
+			percolate_up(N);//힙구조로 되도록 원소 재배치
+		}
 	}
 	public void percolate_up(int i) {//아래부터 위로 힙구조로 재배치
 
