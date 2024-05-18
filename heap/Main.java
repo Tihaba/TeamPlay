@@ -26,7 +26,13 @@ public class Main {
 	}
 	
 	public Integer delete() {//삭제후 반환
-
+		if(isEmpty()) return 0;
+		else {
+			int min=heap[1];//최소값 저장
+			heap[1]=heap[N--];//마지막 노드값 젤 위로 올려 삭제와 동시에 개수 감소
+			percolate_down(1);//힙구조로 되도록 원소 재배치
+			return min;
+		}
 	}
 	
 	public void percolate_down(int i) {//위에서 아래로 힙구조로 재배치
