@@ -21,8 +21,15 @@ public class Main {
 			percolate_up(N);//힙구조로 되도록 원소 재배치
 		}
 	}
-	public void percolate_up(int i) {//아래부터 위로 힙구조로 재배치
-
+	public void percolate_up(int i) //마지막 리프노드 추가 시
+	{
+		int parent=i/2;//부모 노드 인덱스
+		if(parent>=1 && heap[i]<heap[parent]){//비교
+			int temp=heap[parent]; //swap과정           
+			heap[parent]=heap[i];
+			heap[i]=temp;
+			percolate_up(parent);//재귀호출로 완전히 배치될때까지
+		}
 	}
 	
 	public Integer delete() {//삭제후 반환
