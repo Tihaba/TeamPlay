@@ -42,7 +42,18 @@ public class Main {
 	}
 	
 	public void percolate_down(int i) {//위에서 아래로 힙구조로 재배치
-
+		int leftchild=i*2;// 왼쪽 자손 인덱스(default)
+		int rightchild=i*2+1; //오른쪽 자손 인덱스
+		if(leftchild<=N) {
+			if(rightchild<=N && heap[leftchild]>heap[rightchild]) //오른쪽 자손이 왼쪽 자손보다 작은가?
+				leftchild=rightchild;//leftchild를 디폴트로 잡았으니 왼쪽자손에 오른쪽자손 인덱스값 넣기
+			if(heap[leftchild]<heap[i]) {//자식노드가 부모노드보다 작은경우
+				int tmp=heap[i];//부모 자식 자리바꾸기
+				heap[i]=heap[leftchild];
+				heap[leftchild]=tmp;
+				percolate_down(leftchild);//재귀호출로 완전히 배치될때까지
+			}
+		}
 	}
 	public boolean isEmpty() {//비었는지 true false
 		return N==0;
